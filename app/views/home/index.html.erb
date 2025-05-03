@@ -1,0 +1,70 @@
+<%# app/views/home/index.html.erb %>
+
+<!-- 右上に固定でログイン／ログアウトボタンを表示 -->
+<div class="auth-buttons">
+  <% if user_signed_in? %>
+    <%# プロフィール画像があれば表示 %>
+    <% if current_user.profile_image.attached? %>
+      <%= image_tag current_user.profile_image, class: "profile-icon" %>
+    <% end %>
+
+    <%= link_to "予約の確認", reservations_path, class: "auth-button top-login-button" %>
+    <%= link_to "プロフィール編集", edit_user_path(current_user), class: "auth-button profile-button" %>
+    <%= link_to "ログアウト",       destroy_user_session_path, method: :delete, class: "auth-button top-logout-button" %>
+  <% else %>
+    <%= link_to "ログイン",    new_user_session_path,    class: "auth-button" %>
+    <%= link_to "新規登録",    new_user_registration_path, class: "auth-button" %>
+  <% end %>
+</div>
+
+<section class="hero-section">
+  <div class="container">
+    <header class="hero-header">
+      <h1>お気に入りの宿泊先を見つけよう</h1>
+      <p>魅力的な宿泊施設から選べます</p>
+    </header>
+    
+    <div class="search-form">
+     <%= form_with url: search_properties_path, method: :get do |f| %>
+        <div class="form-group destination">
+         <%= f.label :city, "目的地" %>
+          <%= f.select :city, ["札幌", "東京", "大阪", "京都"], { include_blank: "都市の選択" } %>
+        </div>
+        <div class="form-group submit">
+          <%= f.submit "検索" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<% if @featured_properties.present? %>
+  <section class="featured-properties">
+    <div class="container">
+      <h2>おすすめの宿泊施設</h2>
+      <div class="property-grid">
+      <% @featured_properties.each do |property| %>
+        <article class="property-card">
+          <% if property.images.attached? %>
+              <%= image_tag property.images.first.variant(resize_to_fill: [400,300]) %>
+            <% else %>
+              <%= image_tag "hotel_image.jpg", width: 400, height: 300 %>
+            <% end %>
+            
+            <div class="property-info">
+              <h3><%= property.title %></h3>
+              <p><%= property.city %>, <%= property.country %></p>
+              <p>¥<%= number_with_delimiter(property.price_per_night.to_i) %> / 泊</p>
+              <%= link_to "予約する", new_booking_path(property_id: property.id), class: "reserve-button" %>
+              <%= link_to "詳細を見る", property_path(property), class: "details-link" %>
+            </div>
+          </article>
+        <% end %>
+      </div>
+      
+      <div class="view-all">
+        <%= link_to "すべての宿泊施設を見る", properties_path %>
+      </div>
+    </div>
+  </section>
+<% end %>

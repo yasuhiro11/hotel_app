@@ -1,0 +1,30 @@
+<h1>「<%= @city %>」の検索結果</h1>
+
+<% if @properties.any? %>
+  <div class="property-grid">
+    <% @properties.each do |property| %>
+      <article class="property-card">
+        <% if property.images.attached? %>
+          <%= image_tag property.images.first.variant(resize_to_fill: [400,300]) %>
+        <% else %>
+          <%= image_tag "hotel_image.jpg", width: 400, height: 300 %>
+        <% end %>
+
+        <div class="property-info">
+          <h3><%= property.title %></h3>
+          <p><%= property.city %>, <%= property.country %></p>
+          <p>¥<%= number_with_delimiter(property.price_per_night.to_i) %> / 泊</p>
+          <!-- 検索日付を next_booking フォームに渡す -->
+          <%= link_to "予約する",
+                new_booking_path(property_id: property.id),
+                class: "reserve-button" %>
+          <%= link_to "詳細を見る",
+                property_path(property),
+                class: "details-link" %>
+        </div>
+      </article>
+    <% end %>
+  </div>
+<% else %>
+  <p>「<%= @city %>」の物件は見つかりませんでした。</p>
+<% end %>

@@ -1,0 +1,28 @@
+<!-- app/views/properties/show.html.erb -->
+
+<div class="property-detail container">
+  <!-- ここだけ固定画像 -->
+  <div class="property-images">
+    <%= image_tag "hotel_image.jpg",
+                  width: 800,
+                  height: 500,
+                  alt: @property.title,
+                  class: "detail-image" %>
+  </div>
+
+  <div class="property-main">
+    <h1><%= @property.title %></h1>
+    <p><%= @property.city %>, <%= @property.country %></p>
+    <p>¥<%= number_with_delimiter(@property.price_per_night.to_i) %> / 泊</p>
+
+    <section class="description">
+      <%= simple_format(@property.description || "説明が登録されていません。") %>
+    </section>
+
+    <div class="reserve-link">
+      <%= link_to "この施設を予約する",
+                  new_booking_path(property_id: @property.id),
+                  class: "reserve-button" %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,67 @@
+/* app/assets/stylesheets/bookings.css */
+.booking-form {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fafafa;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+  }
+  
+  .booking-form label {
+    display: block;
+    font-weight: bold;
+    margin-top: 15px;
+  }
+  
+  .booking-form input,
+  .booking-form select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .booking-form input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    margin-top: 20px;
+    cursor: pointer;
+  }
+
+/* サムネイル画像 */
+.thumb-img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;   /* 中央切り抜きしたい場合 */
+  margin-left: 8px;   /* IDとの間隔 */
+  border-radius: 4px;   /* 丸角にしたい場合 */
+}
+
+.id-with-thumb {
+  display: flex;
+  flex-direction: row;      /* 横並び（column にすれば縦並びになります） */
+  align-items: flex-start;  /* 上寄せ */
+  padding: 8px;             /* セル内の余白 */
+}
+
+/* 任意：1列目の幅を狭めたいなら */
+table th:nth-child(1),
+table td:nth-child(1) {
+  width: 80px; /* お好みで調整してください */
+}
+
+  .btn-home {
+    display: inline-block;
+    margin-bottom: 16px;
+    padding: 8px 16px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+  }
+  .btn-home:hover {
+    opacity: 0.9;
+  }
+  

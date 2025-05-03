@@ -1,0 +1,40 @@
+<div class="edit-user-form">
+  <h1>プロフィール編集</h1>
+
+  <%= form_with(model: @user, local: true) do |form| %>
+    <% if @user.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@user.errors.count, "エラー") %>が発生しました:</h2>
+        <ul>
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= form.label :name, "名前" %>
+      <%= form.text_field :name %>
+    </div>
+
+    <div class="field">
+      <%= form.label :email, "メールアドレス" %>
+      <%= form.email_field :email %>
+    </div>
+
+    <div class="field">
+      <%= form.label :profile_image, "プロフィール画像" %>
+      <%= form.file_field :profile_image %>
+    </div>
+
+    <div class="field">
+      <%= form.label :bio, "自己紹介" %>
+      <%= form.text_area :bio %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit "更新する" %>
+    </div>
+  <% end %>
+</div>

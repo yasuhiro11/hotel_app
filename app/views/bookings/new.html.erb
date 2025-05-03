@@ -1,0 +1,31 @@
+<% if flash[:alert] %>
+    <div class="flash alert"><%= flash[:alert] %></div>
+<% end %>
+
+<h1>予約フォーム</h1>
+
+<div class="booking-form">
+  <%= form_with model: @booking, url: bookings_path do |f| %>
+    <div>
+      <%= f.label :check_in, "チェックイン日" %><br>
+      <%= f.date_field :check_in %>
+    </div>
+
+    <div>
+      <%= f.label :check_out, "チェックアウト日" %><br>
+      <%= f.date_field :check_out %>
+    </div>
+
+    <div>
+      <%= f.label :guests, "宿泊人数" %><br>
+      <%= f.number_field :guests, min: 1 %>
+    </div>
+
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.hidden_field :property_id, value: @property.id %>
+
+    <div>
+      <%= f.submit "予約を確定する" %>
+    </div>
+  <% end %>
+</div>

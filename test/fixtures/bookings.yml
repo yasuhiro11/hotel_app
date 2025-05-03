@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  start_date: 2025-04-06
+  end_date: 2025-04-06
+  guests: 1
+  total_price: 9.99
+  status: MyString
+  user: one
+  property: one
+
+two:
+  start_date: 2025-04-06
+  end_date: 2025-04-06
+  guests: 1
+  total_price: 9.99
+  status: MyString
+  user: two
+  property: two
