@@ -32,3 +32,6 @@ production:
 
   cable:
     <<: *primary
+
+  queue:
+    <<: *primary
