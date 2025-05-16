@@ -17,4 +17,8 @@ ja:
         inactive: "アカウントが無効です。"
         locked: "アカウントがロックされています。"
         last_attempt: "残り1回のログイン試行でアカウントがロックされます。"
+
+  errors:
+    messages:
+      not_saved: "エラーが発生したため %{resource}は保存されませんでした"
         
