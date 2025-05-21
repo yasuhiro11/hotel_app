@@ -1,3 +1,28 @@
+# 1) シード用ユーザー取得 or 作成
+seed_user = User.find_or_create_by!(email: "seed@example.com") do |u|
+  u.password = "password123"
+  # （必要なら name や他の必須カラムをここで設定）
+end
+
+# 2) 既存データをいったん削除（重複防止）
+Property.where(user: seed_user).delete_all
+
+# 3) 10件まとめて作成
+cities = [ "札幌", "東京", "大阪", "京都" ]
+types  = [ "ホテル", "ゲストハウス", "旅館" ]
+10.times do |i|
+  Property.create!(
+    title:            "サンプル宿泊施設#{i + 1}",
+    city:             cities.sample,
+    country:          "日本",
+    price_per_night:  rand(5_000..30_000),
+    property_type:    types.sample,
+    user:             seed_user
+  )
+end
+
+puts "✅ 10件のPropertyを作成しました"
+
 # This file should ensure the existence of records required to run the application in every environment (production,
 # development, test). The code here should be idempotent so that it can be executed at any point in every environment.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
@@ -7,18 +32,3 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
-
-Property.find_or_create_by!(title: "大阪プレミアムホテル") do |p|
-  p.description = "大阪にある高級ホテルです。"
-  p.price = 8232
-end
-
-Property.find_or_create_by!(title: "東京ラグジュアリーホテル") do |p|
-  p.description = "東京にあるラグジュアリーホテルです。"
-  p.price = 12431
-end
-
-Property.find_or_create_by!(title: "札幌ビューホテル") do |p|
-  p.description = "札幌の絶景を楽しめるホテルです。"
-  p.price = 12468
-end
