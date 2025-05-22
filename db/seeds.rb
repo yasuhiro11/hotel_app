@@ -10,7 +10,7 @@ Property.where(user: seed_user).delete_all
 # 3) 10件まとめて作成
 cities = [ "札幌", "東京", "大阪", "京都" ]
 types  = [ "ホテル", "ゲストハウス", "旅館" ]
-10.times do |i|
+20.times do |i|
   Property.create!(
     title:            "サンプル宿泊施設#{i + 1}",
     city:             cities.sample,
@@ -21,7 +21,7 @@ types  = [ "ホテル", "ゲストハウス", "旅館" ]
   )
 end
 
-puts "✅ 10件のPropertyを作成しました"
+puts "✅ 20件のPropertyを作成しました"
 
 # This file should ensure the existence of records required to run the application in every environment (production,
 # development, test). The code here should be idempotent so that it can be executed at any point in every environment.

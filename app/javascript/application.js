@@ -1,27 +1,32 @@
 // app/javascript/application.js
 
+// 1. Rails UJS（= link_to …, method: :delete を動かすための仕組み）を読み込む
+import Rails from "@rails/ujs"
+Rails.start()
+
+// 2. Turbo（ページ遷移周り）
 import "@hotwired/turbo-rails"
+
+// 3. Stimulus コントローラ群
 import "controllers"
 
+// 4. プロファイルドロップダウン（あなたが書いたコード）
 const initProfileDropdown = () => {
-  const icon = document.getElementById("profile-icon");       // 1. id で取得
-  const menu = document.getElementById("dropdown-menu");
-  if (!icon || !menu) return;
+  const icon = document.getElementById("profile-icon")
+  const menu = document.getElementById("dropdown-menu")
+  if (!icon || !menu) return
 
-  // クリックで show クラスをトグル + aria-expanded を更新
   icon.addEventListener("click", (e) => {
-    e.stopPropagation();
-    const isOpen = menu.classList.toggle("show");
-    icon.setAttribute("aria-expanded", isOpen);
-  });
+    e.stopPropagation()
+    const isOpen = menu.classList.toggle("show")
+    icon.setAttribute("aria-expanded", isOpen)
+  })
 
-  // 他所をクリックしたら閉じる + aria-expanded="false"
   document.addEventListener("click", () => {
-    menu.classList.remove("show");
-    icon.setAttribute("aria-expanded", "false");
-  });
-};
+    menu.classList.remove("show")
+    icon.setAttribute("aria-expanded", "false")
+  })
+}
 
-// Turbo 付きページ遷移にも対応
-document.addEventListener("DOMContentLoaded", initProfileDropdown);
-document.addEventListener("turbo:load",       initProfileDropdown);
+document.addEventListener("DOMContentLoaded", initProfileDropdown)
+document.addEventListener("turbo:load",       initProfileDropdown)
