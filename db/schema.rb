@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_30_163209) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_21_141140) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -117,6 +117,16 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_30_163209) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["property_id"], name: "index_rooms_on_property_id"
+  end
+
+  create_table "solid_queue_jobs", force: :cascade do |t|
+    t.string "job_class", null: false
+    t.text "arguments"
+    t.datetime "scheduled_at", null: false
+    t.string "queue_name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["queue_name", "scheduled_at"], name: "index_solid_queue_jobs_on_queue_name_and_scheduled_at"
   end
 
   create_table "users", force: :cascade do |t|
