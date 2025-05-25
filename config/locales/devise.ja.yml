@@ -13,6 +13,7 @@ ja:
     failure:
       invalid: "メールアドレスまたはパスワードが正しくありません。"
       not_found_in_database: "メールアドレスまたはパスワードが正しくありません。"
+      unauthenticated: "ご予約には新規登録またはログインが必要です"
       user:
         inactive: "アカウントが無効です。"
         locked: "アカウントがロックされています。"
