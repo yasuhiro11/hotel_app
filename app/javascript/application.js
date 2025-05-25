@@ -1,8 +1,8 @@
 // app/javascript/application.js
 
 // 1. Rails UJS（= link_to …, method: :delete を動かすための仕組み）を読み込む
-import * as Rails from "@rails/ujs"
-Rails.start()
+//import Rails from "@rails/ujs"
+//Rails.start()
 
 // 2. Turbo（ページ遷移周り）
 import "@hotwired/turbo-rails"

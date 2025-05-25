@@ -10,7 +10,7 @@
 
     <%= link_to "予約の確認", reservations_path, class: "auth-button top-login-button" %>
     <%= link_to "プロフィール編集", edit_user_path(current_user), class: "auth-button profile-button" %>
-    <%= link_to "ログアウト",       destroy_user_session_path, method: :delete, class: "auth-button top-logout-button" %>
+    <%= link_to "ログアウト", destroy_user_session_path, class: "auth-button top-logout-button", data: { turbo_method: :delete, turbo_confirm: "ログアウトしますか？" } %>
   <% else %>
     <%= link_to "ログイン",    new_user_session_path,    class: "auth-button" %>
     <%= link_to "新規登録",    new_user_registration_path, class: "auth-button" %>
